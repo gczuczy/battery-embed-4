@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 
-set(default_build_type "Release")
 set(CMAKE_CXX_STANDARD 20)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 
 project(foo VERSION 0.1.0 LANGUAGES CXX)
 include(FetchContent)
@@ -10,7 +8,7 @@ include(CheckIPOSupported)
 
 add_executable(foo)
 
-set(FETCH_EMBED OFF CACHE BOOL "Fetch battery-embed")
+set(FETCH_EMBED ON CACHE BOOL "Fetch battery-embed")
 if(FETCH_EMBED)
 FetchContent_Declare(
   battery-embed
