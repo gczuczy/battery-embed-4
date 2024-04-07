@@ -8,15 +8,15 @@ include(CheckIPOSupported)
 
 add_executable(foo)
 
-set(FETCH_EMBED ON CACHE BOOL "Fetch battery-embed")
-if(FETCH_EMBED)
 FetchContent_Declare(
   battery-embed
   GIT_REPOSITORY https://github.com/batterycenter/embed.git
   GIT_TAG        v1.2.8
 )
 FetchContent_MakeAvailable(battery-embed)
-endif()
+#b_embed(foo subdir/prayer.txt)
+
+add_subdirectory(subdir)
 
 check_ipo_supported(RESULT LTO_supported OUTPUT error)
 if(LTO_supported)
@@ -25,8 +25,3 @@ if(LTO_supported)
 else()
   message(STATUS "IPO/LTO not supported: <${error}>")
 endif()
-
-target_sources(foo
-  PRIVATE
-  foo.cc
-)
