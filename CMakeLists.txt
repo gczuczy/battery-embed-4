@@ -14,6 +14,7 @@ FetchContent_Declare(
   GIT_TAG        v1.2.8
 )
 FetchContent_MakeAvailable(battery-embed)
+add_compile_definitions(B_PRODUCTION_MODE)
 #b_embed(foo subdir/prayer.txt)
 
 add_subdirectory(subdir)
@@ -25,3 +26,7 @@ if(LTO_supported)
 else()
   message(STATUS "IPO/LTO not supported: <${error}>")
 endif()
+
+target_compile_options(foo
+  PRIVATE -fexperimental-library
+)
